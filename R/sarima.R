@@ -25,15 +25,15 @@ function(xdata,p,d,q,f=NULL,P=0,D=0,Q=0,S=-1,details=TRUE,xreg=NULL,Model=TRUE,t
    xmean = rep(1,n);  if(no.constant==TRUE) xmean=NULL 
    if (d==0 & D==0) {	  
     fitit = stats::arima(xdata, order=c(p,d,q), seasonal=list(order=c(P,D,Q), period=S),
-              xreg=xmean,include.mean=FALSE,fixed=f,optim.control=list(trace=trc,REPORT=1,reltol=tol))
+              xreg=xmean,include.mean=FALSE,optim.control=list(trace=trc,REPORT=1,reltol=tol),fixed=f)
 } else if (xor(d==1, D==1) & no.constant==FALSE) {
     fitit = stats::arima(xdata, order=c(p,d,q), seasonal=list(order=c(P,D,Q), period=S),
-              xreg=constant,fixed=f,optim.control=list(trace=trc,REPORT=1,reltol=tol))
+              xreg=constant,optim.control=list(trace=trc,REPORT=1,reltol=tol),fixed=f)
 } else fitit = stats::arima(xdata, order=c(p,d,q), seasonal=list(order=c(P,D,Q), period=S), 
-                     include.mean=!no.constant,fixed=f,optim.control=list(trace=trc,REPORT=1,reltol=tol))
+                     include.mean=!no.constant,optim.control=list(trace=trc,REPORT=1,reltol=tol),fixed=f)
 }
 #
-  if (!is.null(xreg)) {fitit = stats::arima(xdata, order=c(p,d,q), seasonal=list(order=c(P,D,Q), period=S), xreg=xreg,fixed=f,optim.control=list(trace=trc,REPORT=1,reltol=tol))
+  if (!is.null(xreg)) {fitit = stats::arima(xdata, order=c(p,d,q), seasonal=list(order=c(P,D,Q), period=S), xreg=xreg,optim.control=list(trace=trc,REPORT=1,reltol=tol),fixed=f)
 }
 #
 #  replace tsdiag with a better version
