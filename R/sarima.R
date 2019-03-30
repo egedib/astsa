@@ -1,4 +1,4 @@
-sarima <-
+sarimaEgediB <-
 function(xdata,p,d,q,f=NULL,P=0,D=0,Q=0,S=-1,details=TRUE,xreg=NULL,Model=TRUE,tol=sqrt(.Machine$double.eps),no.constant=FALSE)
 { 
   #
